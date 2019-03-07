@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/frank1789/Largest-subsequence.svg?branch=master)](https://travis-ci.com/frank1789/Largest-subsequence)
 # Largest subsequence
 ### Exercise 1
 Given a vector of integer (large > 10000) find the largest subsequence of consecutive monotone number,
