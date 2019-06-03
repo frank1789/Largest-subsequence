@@ -10,12 +10,18 @@ addons:
       - g++-8
 
 before_install:
-  - pip install --user cpp-coveralls
+  - gem install coveralls-lcov
+  - sudo apt-get install cmake cmake-data
+  - sudo apt-get install lcov
 
 script:
-  - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -DCOVERAGE=1 .
-  - cmake --build .
+  - mkdir build && cd build
+  - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -DCOVERAGE=ON ..
+  - make
   - ./BestSequence
 
 after_success:
-  - coveralls --root . -E ".*CMakeFiles.*"
+  - lcov --directory ${PWD}/build --capture --output-file coverage.info # capture coverage info
+  - lcov --remove coverage.info 'tests/*' 'app/*' 'external/*' 'cmake/*' '/usr/*' --output-file coverage.info # filter out system and test code
+  - lcov --list coverage.info # debug before upload
+  - coveralls-lcov coverage.info #--repo-token _____ coverage.info # uploads to coveralls
