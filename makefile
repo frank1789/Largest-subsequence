@@ -8,11 +8,11 @@ SRCS := $(wildcard *.cpp)
 all: $(obj)
 	$(cc) -o $(main) $(obj) -fprofile-arcs -ftest-coverage -lgcov
 
-$(obj).o: $(SRCS)
+$(main).o: $(SRCS)
 	$(cc) $(CF) $(SRCS)
 
 
-.PHONY: clean cleanall test $(testcases)
+.PHONY: clean cleanall
 
 clean:
 	rm $(obj)
