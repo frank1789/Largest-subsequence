@@ -28,7 +28,7 @@ script:
   # init coverage to 0 (optional)
   - lcov --directory . --zerocounters
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8
-  - cmake -DCOVERAGE=ON ..
+  - cmake -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ..
   - make
   - ./BestSequence
 
