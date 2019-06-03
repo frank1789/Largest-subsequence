@@ -18,10 +18,10 @@ addons:
       - lcov
 
 install:
-  - pip install --user cpp-coveralls
-  - gem install coveralls-lcov
-  - sudo apt-get install lcov
-  - lcov --version
+# (fake) install dependencies (usually involves wget, configure, make, ...)
+# install into cache folder (build binaries+headers only, no sources and do NOT build there)
+- mkdir -p $HOME/.cache
+- touch $HOME/.cache/mydependency.so
 
 script:
   - mkdir build && cd build
