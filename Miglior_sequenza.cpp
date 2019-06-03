@@ -69,7 +69,7 @@ int main() {
   // stampo a schermo la miglior sequenza
   // ricavo la lunghezza del vettore tramite il metodo size
   std::cout << "\nLa sequenza migliore:" << "\n";
-  int sum = 0;
+  long int sum = 0;
   for (auto const& value : best_sequenza) {
     sum += value;
     std::cout <<" " << value << " ";
