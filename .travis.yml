@@ -3,9 +3,9 @@ sudo: false
 language: cpp
 
 cache:
-  - cchache: true
-  - apt: true
-  - pip: true
+  - cchache
+  - apt
+  - pip
 
 addons:
   apt:
@@ -18,8 +18,13 @@ addons:
 before_install:
   - pip install --user cpp-coveralls
   - gem install coveralls-lcov
-  - sudo apt-get install cmake cmake-data
+  - sudo apt-get install cmake-data
   - sudo apt-get install lcov
+
+before_script:
+  - cchache
+  - apt
+  - pip
 
 script:
   - mkdir build && cd build
@@ -29,4 +34,4 @@ script:
   - ./BestSequence
 
 after_success:
-  - coveralls --root . -E ".*CMakeFiles.*"
+  - coveralls -r .. --gcov-options '\-lp' -e ".*CMakeFiles.*"
