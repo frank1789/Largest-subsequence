@@ -29,7 +29,7 @@ script:
   - lcov --directory . --zerocounters
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8
   - cmake -DCODE_COVERAGE=ON -DCMAKE_BUILD_TYPE=Debug ..
-  - make
+  - cmake --build . --config Debug -- -j $(nproc)
   - ./BestSequence
 
 after_success:
