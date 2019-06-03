@@ -1,20 +1,21 @@
+cc = g++ -std=c++11
+main = miglior_sequenza
+obj = miglior_sequenza.o
+CF = -O0 -c -fprofile-arcs -ftest-coverage
+testcases = basic exception
+SRCS := $(shell find . -name *.cpp
+
+all: $(obj)
+	$(cc) -o $(main) $(obj) -fprofile-arcs -ftest-coverage -lgcov
+
+main.o: $(SRCS)
+	$(cc) $(CF) $(SRCS)
 
 
-all: Miglior_sequenza test_coverage
-
-
-test_coverage:
-	g++ --std=c++11 -O0 Miglior_sequenza.cpp -o Miglior_sequenza
-	./Miglior_sequenza
-	if [ -z "$TRAVIS_JOB_ID" ]; then
-    		export COVERALLS_REPO_TOKEN="fake testing token"
-	fi
-
-	coveralls --verbose --encodings utf-8
-
-Miglior_sequenza:	Miglior_sequenza.cpp
-	g++ --std=c++11 -O3 Miglior_sequenza.cpp -o Miglior_sequenza 
+.PHONY: clean cleanall test $(testcases)
 
 clean:
-	rm -f Miglior_sequenza
+	rm $(obj)
 
+cleanall:
+	rm -f $(obj)
