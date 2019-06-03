@@ -3,8 +3,7 @@ sudo: false
 language: cpp
 
 cache:
-  directories:
-    - ${TRAVIS_BUILD_DIR}/deps
+  - cchache
 
 addons:
   apt:
@@ -17,13 +16,6 @@ before_install:
   - gem install coveralls-lcov
   - sudo apt-get install cmake cmake-data
   - sudo apt-get install lcov
-
-install:
-    # Dependencies required by the CI are installed in ${TRAVIS_BUILD_DIR}/deps/
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir -p "${DEPS_DIR}"
-  - cd "${DEPS_DIR}"
-  - cd
 
 script:
   - mkdir build && cd build
