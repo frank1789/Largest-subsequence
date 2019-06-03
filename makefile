@@ -8,7 +8,7 @@ SRCS := $(wildcard *.cpp)
 all: $(obj)
 	$(cc) -o $(main) $(obj) -fprofile-arcs -ftest-coverage -lgcov
 
-$(main).o: $(SRCS)
+miglior_sequenza.o: $(SRCS)
 	$(cc) $(CF) $(SRCS)
 
 
