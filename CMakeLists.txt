@@ -12,12 +12,9 @@ set(CMAKE_REQUIRED_FLAGS -std=c++11)
 
 
 add_executable(BestSequence Miglior_sequenza.cpp)
-target_compile_options(BestSequence PUBLIC -std=c++11 -g -O0 -Wall -Werror -Wextra -Wpedantic -Wconversion -Wswitch-default -Wswitch-enum -Wunreachable-code -Wwrite-strings -Wcast-align -Wshadow -Wundef)
+target_compile_options(BestSequence PUBLIC -std=c++11 -g -Wall -Werror -Wextra -Wpedantic -Wconversion -Wswitch-default -Wswitch-enum -Wunreachable-code -Wwrite-strings -Wcast-align -Wshadow -Wundef)
 
 
 if (COVERAGE)
-    set_target_properties(BestSequence
-    PROPETIES
-    COMPILE_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
-    target_compile_options(BestSequence PRIVATE --coverage)
+    target_compile_options(BestSequence PRIVATE --coverage -O0 -fprofile-arcs -ftest-coverage)
 endif()
