@@ -2,6 +2,10 @@ dist: xenial
 sudo: false
 language: cpp
 
+cache:
+  directories:
+    - ${TRAVIS_BUILD_DIR}/deps
+
 addons:
   apt:
     sources:
@@ -14,6 +18,12 @@ before_install:
   - sudo apt-get install cmake cmake-data
   - sudo apt-get install lcov
 
+install:
+    # Dependencies required by the CI are installed in ${TRAVIS_BUILD_DIR}/deps/
+  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+  - mkdir -p "${DEPS_DIR}"
+  - cd "${DEPS_DIR}"
+
 script:
   - mkdir build && cd build
   - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -DCOVERAGE=ON ..
@@ -21,7 +31,4 @@ script:
   - ./BestSequence
 
 after_success:
-  - lcov --directory ${PWD} --capture --output-file coverage.info # capture coverage info
-  - lcov --remove coverage.info 'tests/*' 'app/*' 'external/*' 'cmake/*' '/usr/*' --output-file coverage.info # filter out system and test code
-  - lcov --list coverage.info # debug before upload
-  - coveralls-lcov coverage.info #--repo-token _____ coverage.info # uploads to coveralls
+  - coveralls --root . -E ".*CMakeFiles.*"

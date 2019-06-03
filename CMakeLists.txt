@@ -19,4 +19,6 @@ if (COVERAGE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
     # Coverage can only be set if -g is used.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+    target_compile_options(BestSequence PRIVATE --coverage)
+    target_link_libraries(BestSequence PRIVATE --coverage)
 endif()
