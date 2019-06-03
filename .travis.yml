@@ -2,10 +2,10 @@ dist: xenial
 sudo: false
 language: cpp
 
-cache:
-  - cchache
-  - apt
-  - pip
+cache: # see https://docs.travis-ci.com/user/caching/
+- directories:
+  - $HOME/.cache
+
 
 addons:
   apt:
@@ -14,11 +14,12 @@ addons:
     packages:
       - g++-8
       - cmake
+      - cmake-data
+      - lcov
 
 install:
   - pip install --user cpp-coveralls
   - gem install coveralls-lcov
-  - sudo apt-get install cmake-data
   - sudo apt-get install lcov
   - lcov --version
 
