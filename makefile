@@ -3,7 +3,7 @@ main = miglior_sequenza
 obj = miglior_sequenza.o
 CF = -O0 -c -fprofile-arcs -ftest-coverage
 testcases = basic exception
-SRCS := $(shell find . -name *.cpp
+SRCS := $(wildcard *.cpp)
 
 all: $(obj)
 	$(cc) -o $(main) $(obj) -fprofile-arcs -ftest-coverage -lgcov
