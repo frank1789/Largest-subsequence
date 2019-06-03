@@ -15,11 +15,12 @@ addons:
       - g++-8
       - cmake
 
-before_install:
+install:
   - pip install --user cpp-coveralls
   - gem install coveralls-lcov
   - sudo apt-get install cmake-data
   - sudo apt-get install lcov
+  - lcov --version
 
 script:
   - mkdir build && cd build
