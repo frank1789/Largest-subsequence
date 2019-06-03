@@ -4,13 +4,16 @@ language: cpp
 
 cache:
   - cchache
+  - apt
+  - pip
 
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - g++-8
+      #- g++-8
+      - cmake
 
 before_install:
   - pip install --user cpp-coveralls
