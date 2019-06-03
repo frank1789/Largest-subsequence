@@ -13,8 +13,9 @@ before_install:
   - pip install --user cpp-coveralls
 
 script:
-  - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8
-  - make
+  - CXX=/usr/bin/g++-8 CC=/usr/bin/gcc-8 cmake -DCOVERAGE=1 .
+  - cmake --build .
+  - ./tests
 
 after_success:
-  - coveralls --root .
+  - coveralls --root . -E ".*CMakeFiles.*"
