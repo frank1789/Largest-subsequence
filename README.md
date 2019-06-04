@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/frank1789/Largest-subsequence.svg?branch=master)](https://travis-ci.com/frank1789/Largest-subsequence)
-[![Coverage Status](https://coveralls.io/repos/github/frank1789/Largest-subsequence/badge.svg?branch=master)](![Coveralls github](https://img.shields.io/coveralls/github/frank1789/Largest-subsequence.svg?style=flat-square))
+![Coveralls github](https://img.shields.io/coveralls/github/frank1789/Largest-subsequence.svg)
 # Largest subsequence
 ### Exercise 1
 Given a vector of integer (large > 10000) find the largest subsequence of consecutive monotone number,
