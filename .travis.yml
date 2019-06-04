@@ -47,4 +47,6 @@ after_success:
 # output coverage data for debugging (optional)
 - lcov --list coverage.info
 - coveralls -r .. --gcov-options '\-lp' -E ".*CMakeFiles.*"
-#- coveralls-lcov --repo-token ${COVERALLS_TOKEN} coverage.info
+
+notifications:
+  email: change
