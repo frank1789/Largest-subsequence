@@ -3,9 +3,13 @@ sudo: false
 language: cpp
 
 cache: # see https://docs.travis-ci.com/user/caching/
-- directories:
-  - $HOME/.cache
-
+- pip
+- ccache
+apt: true
+directories:
+- $HOME/.cache
+- $HOME
+- apt-cache/
 
 addons:
   apt:
@@ -22,12 +26,12 @@ install:
 # install into cache folder (build binaries+headers only, no sources and do NOT build there)
 - mkdir -p $HOME/.cache
 - touch $HOME/.cache/mydependency.so
+- pip install --user cpp-coveralls
 
 script:
   - mkdir build && cd build
   # init coverage to 0 (optional)
   - lcov --directory . --zerocounters
-
   - cmake -DCOVERAGE=1 ..
   - cmake --build . --config Debug -- -j $(nproc)
   - ./BestSequence
@@ -43,4 +47,4 @@ after_success:
 # output coverage data for debugging (optional)
 - lcov --list coverage.info
 - coveralls -r .. --gcov-options '\-lp' -E ".*CMakeFiles.*"
-- coveralls-lcov --repo-token ${COVERALLS_TOKEN} coverage.info
+#- coveralls-lcov --repo-token ${COVERALLS_TOKEN} coverage.info
